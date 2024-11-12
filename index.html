@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Vi Phạm Của Học Sinh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Quản Lý Vi Phạm Của Học Sinh</h2>
+
+    <div>
+        <label for="violationDate">Ngày:</label>
+        <input type="date" id="violationDate" onchange="loadData()">
+          <div>
+        <label for="studentName">Tên Học Sinh:</label>
+        <select id="studentName">
+            <!-- Các học sinh sẽ được thêm vào đây từ API -->
+        </select>
+    </div>
+        <!-- <label for="studentName">Tên Học Sinh:</label>
+        <select id="studentName">
+            <option value="Học Sinh A">Học Sinh A</option>
+        </select> -->
+    </div>
+
+    <h3>Vi Phạm</h3>
+    <div>
+        <label><input type="checkbox" class="violation" value="1"> Vệ Sinh (-1d)</label>
+        <label><input type="checkbox" class="violation" value="3"> Đi Muộn (-3d)</label>
+        <label><input type="checkbox" class="violation" value="10"> Sử Dụng Điện Thoại (-10d)</label>
+        <label><input type="checkbox" class="violation" value="5"> Đánh Nhau (-5d)</label>
+        <label><input type="checkbox" class="violation" value="4"> Không Đồng Phục (-4d)</label>
+        <label><input type="checkbox" class="violation" value="1"> Ăn Vặt (-1d)</label>
+        <label><input type="checkbox" class="violation" value="1"> Không Làm Bài Tập (-1d)</label>
+        <label><input type="checkbox" class="violation" value="1"> Không Tuân Thủ Nội Quy (-1d)</label>
+    </div>
+
+    <div class="buttons">
+        <button onclick="saveRecord()">Lưu Lại Hồ Sơ</button>
+        <button onclick="calculateWeeklyTotal()">Tính Tổng Hàng Tuần</button>
+        <button onclick="exportData()">Xuất Dữ Liệu</button>
+    </div>
+
+    <h3>Hồ Sơ Hàng Ngày</h3>
+    <table id="dailyTable">
+        <thead>
+            <tr>
+                <th>Ngày</th>
+                <th>Tên Học Sinh</th>
+                <th>Vi Phạm</th>
+                <th>Tổng Điểm Trừ</th>
+                <th>Số Điểm Còn Lại</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h3>Tổng Kết Hàng Tuần</h3>
+    <table id="weeklyTable">
+        <thead>
+            <tr>
+                <th>Tên Học Sinh</th>
+                <th>Tổng Điểm Trừ</th>
+                <th>Số Điểm Còn Lại</th>
+                <th>Đánh Giá Hạnh Kiểm</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script src="script.js"></script>
+
+</script>
+</body>
+</html>

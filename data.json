@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2024-11-22",
+    "studentName": "Học Sinh A",
+    "violations": "Vệ Sinh (-1d)",
+    "totalDeduction": 1,
+    "remainingPoints": 99
+  },
+  {
+    "date": "2024-11-22",
+    "studentName": "Học Sinh A",
+    "violations": "Vệ Sinh (-1d), Đi Muộn (-3d)",
+    "totalDeduction": 4,
+    "remainingPoints": 96
+  },
+  {
+    "date": "2024-11-22",
+    "studentName": "Học Sinh A",
+    "violations": "Vệ Sinh (-1d), Đi Muộn (-3d), Sử Dụng Điện Thoại (-10d), Đánh Nhau (-5d)",
+    "totalDeduction": 19,
+    "remainingPoints": 81
+  }
+]
