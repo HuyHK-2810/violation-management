@@ -9,11 +9,12 @@ const __dirname = path.dirname(__filename);
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const SERVICE_ACCOUNT_KEY_PATH = path.join(__dirname, './config/steam-patrol-309908-abe8340c8638.json');
 const SPREADSHEET_ID = '1v_EoeOYpxa7882cuL1pHm02vMjAm8tVOPmMgk5E_kJU'; // ID của Google Sheet (lấy từ URL của sheet)
+const keyFile = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
 
 // Khởi tạo Google Sheets API client
 export async function authenticateGoogleSheets() {
   const auth = new google.auth.GoogleAuth({
-    keyFile: SERVICE_ACCOUNT_KEY_PATH,
+    keyFile: keyFile,
     scopes: SCOPES,
   });
 
