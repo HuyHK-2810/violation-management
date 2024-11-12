@@ -36,6 +36,12 @@
             margin-right: 10px;
             cursor: pointer;
         }
+        .flex {
+            display: flex;
+            gap: 16px;
+            justify-items: center;
+            align-items: start;
+        }
     </style>
 </head>
 <body>
@@ -43,10 +49,10 @@
 <div class="container">
     <h2>Quản Lý Vi Phạm Của Học Sinh</h2>
 
-    <div>
+    <div class="flex">
         <label for="violationDate">Ngày:</label>
         <input type="date" id="violationDate" onchange="loadData()">
-          <div>
+          <div >
         <label for="studentName">Tên Học Sinh:</label>
         <select id="studentName">
             <!-- Các học sinh sẽ được thêm vào đây từ API -->
@@ -73,7 +79,6 @@
     <div class="buttons">
         <button onclick="saveRecord()">Lưu Lại Hồ Sơ</button>
         <button onclick="calculateWeeklyTotal()">Tính Tổng Hàng Tuần</button>
-        <button onclick="exportData()">Xuất Dữ Liệu</button>
     </div>
 
     <h3>Hồ Sơ Hàng Ngày</h3>
@@ -106,6 +111,5 @@
 
 <script src="script.js"></script>
 
-</script>
 </body>
 </html>

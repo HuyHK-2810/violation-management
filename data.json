@@ -1,6 +1,7 @@
 [
   {
     "date": "2024-11-22",
+    "id":"123",
     "studentName": "Học Sinh A",
     "violations": "Vệ Sinh (-1d)",
     "totalDeduction": 1,
@@ -8,6 +9,7 @@
   },
   {
     "date": "2024-11-22",
+     "id":"123",
     "studentName": "Học Sinh A",
     "violations": "Vệ Sinh (-1d), Đi Muộn (-3d)",
     "totalDeduction": 4,
@@ -15,6 +17,7 @@
   },
   {
     "date": "2024-11-22",
+     "id":"123",
     "studentName": "Học Sinh A",
     "violations": "Vệ Sinh (-1d), Đi Muộn (-3d), Sử Dụng Điện Thoại (-10d), Đánh Nhau (-5d)",
     "totalDeduction": 19,

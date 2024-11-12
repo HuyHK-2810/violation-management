@@ -1,82 +1,28 @@
-const express = require('express');
-const fs = require('fs');
+import express from 'express';
+import { getViolations, addViolation } from './api/violations.js';
+import { getHocsinh } from './api/hocsinh.js';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 const app = express();
 const PORT = 3000;
 
-app.use(express.static(__dirname));
 app.use(express.json());
 
-// API lấy dữ liệu từ data.json
-app.get('/api/violations', (req, res) => {
-    const { date, studentName } = req.query;
+// API cho tab violations
+app.get('/api/violations', getViolations);
+app.post('/api/violations', addViolation);
 
-    fs.readFile('data.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error('Lỗi đọc file:', err);
-            return res.status(500).json({ error: 'Lỗi đọc file dữ liệu' });
-        }
-
-        try {
-            const records = JSON.parse(data);
-            const filteredRecords = records.filter(record =>
-                record.date === date && record.studentName === studentName
-            );
-            res.json(filteredRecords);
-        } catch (parseError) {
-            console.error('Lỗi parse JSON:', parseError);
-            res.status(500).json({ error: 'Lỗi parse dữ liệu JSON' });
-        }
-    });
+// API cho tab hocsinh
+app.get('/api/hocsinh', getHocsinh);
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
-
-// API lưu dữ liệu mới vào data.json
-app.post('/api/violations', (req, res) => {
-    const newRecord = req.body;
-
-    fs.readFile('data.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error('Lỗi đọc file:', err);
-            return res.status(500).json({ error: 'Lỗi đọc file dữ liệu' });
-        }
-
-        try {
-            const records = JSON.parse(data);
-            records.push(newRecord);
-
-            fs.writeFile('data.json', JSON.stringify(records, null, 2), 'utf8', (writeErr) => {
-                if (writeErr) {
-                    console.error('Lỗi ghi file:', writeErr);
-                    return res.status(500).json({ error: 'Lỗi ghi file dữ liệu' });
-                }
-                res.json({ message: 'Lưu dữ liệu thành công' });
-            });
-        } catch (parseError) {
-            console.error('Lỗi parse JSON:', parseError);
-            res.status(500).json({ error: 'Lỗi parse dữ liệu JSON' });
-        }
-    });
-});
-
-app.get('/api/hocsinh', (req, res) => {
-
-    fs.readFile('hocsinh.json', 'utf8', (err, data) => {
-        if (err) {
-            console.error('Lỗi đọc file:', err);
-            return res.status(500).json({ error: 'Lỗi đọc file dữ liệu' });
-        }
-
-        try {
-               const students = JSON.parse(data);
-            res.json(students);
-        } catch (parseError) {
-            console.error('Lỗi parse JSON:', parseError);
-            res.status(500).json({ error: 'Lỗi parse dữ liệu JSON' });
-        }
-    });
-});
-
-
-// Khởi động server
 app.listen(PORT, () => {
-    console.log(`Server chạy tại http://localhost:${PORT}`);
+  console.log(`Server đang chạy tại http://localhost:${PORT}`);
 });
