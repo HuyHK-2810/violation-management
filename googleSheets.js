@@ -6,17 +6,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Cấu hình xác thực Google API
-// const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-// const SERVICE_ACCOUNT_KEY_PATH = path.join(__dirname, './config/steam-patrol-309908-abe8340c8638.json');
-// const SPREADSHEET_ID = '1v_EoeOYpxa7882cuL1pHm02vMjAm8tVOPmMgk5E_kJU'; // ID của Google Sheet (lấy từ URL của sheet)
-// const keyFile = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
+const SERVICE_ACCOUNT_KEY_PATH = path.join(__dirname, './config/steam-patrol-309908-abe8340c8638.json');
+const SPREADSHEET_ID = '1v_EoeOYpxa7882cuL1pHm02vMjAm8tVOPmMgk5E_kJU'; // ID của Google Sheet (lấy từ URL của sheet)
 
 // Khởi tạo Google Sheets API client
 export async function authenticateGoogleSheets() {
-  const keyFile = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
   const auth = new google.auth.GoogleAuth({
-    credentials: keyFile,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    keyFile: SERVICE_ACCOUNT_KEY_PATH,
+    scopes: SCOPES,
   });
 
   const client = await auth.getClient();
